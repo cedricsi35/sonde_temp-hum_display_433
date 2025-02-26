@@ -6,11 +6,11 @@
 #include <SPI.h>
 
 // Définir les broches pour l'écran eInk
-#define EPD_DC 10
-#define EPD_CS 9
-#define EPD_BUSY 7 // can set to -1 to not use a pin (will wait a fixed delay)
-#define SRAM_CS 6
-#define EPD_RESET 8  // can set to -1 and share with microcontroller Reset!
+#define EPD_DC 9
+#define EPD_CS 10
+#define EPD_BUSY -1 // can set to -1 to not use a pin (will wait a fixed delay)
+#define SRAM_CS 8
+#define EPD_RESET 7  // can set to -1 and share with microcontroller Reset!
 #define EPD_SPI &SPI // primary SPI
 
 // Définir les broches pour le module RFM69HCW
