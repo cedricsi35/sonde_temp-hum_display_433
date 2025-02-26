@@ -6,11 +6,13 @@
 #include <SPI.h>
 
 // Définir les broches pour l'écran eInk
-#define EPD_CS     10
-#define EPD_DC      9
-#define SRAM_CS     8
-#define EPD_RESET   7
-#define EPD_BUSY    -1
+#define EPD_DC 10
+#define EPD_CS 9
+#define EPD_BUSY 7 // can set to -1 to not use a pin (will wait a fixed delay)
+#define SRAM_CS 6
+#define EPD_RESET 8  // can set to -1 and share with microcontroller Reset!
+#define EPD_SPI &SPI // primary SPI
+
 // Définir les broches pour le module RFM69HCW
 #define RF69_FREQ 433.0
 #define RF69_CS   6
@@ -20,7 +22,7 @@
 Adafruit_SHT4x sht4 = Adafruit_SHT4x();
 RFM69 radio(RF69_CS, RF69_INT, true);
 // Initialiser l'écran eInk
-Adafruit_IL0373 display(128, 250, EPD_DC, EPD_RESET, EPD_CS, SRAM_CS, EPD_BUSY);
+Adafruit_SSD1680 display(250, 122, EPD_DC, EPD_RESET, EPD_CS, SRAM_CS, EPD_BUSY, EPD_SPI);
 
 // Définir les icônes (exemples simples)
 const unsigned char temperatureIcon[] PROGMEM = {
