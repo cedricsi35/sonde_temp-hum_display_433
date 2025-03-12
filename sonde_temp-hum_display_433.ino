@@ -14,7 +14,7 @@
 #define EPD_SPI &SPI // primary SPI
 
 // Définir les broches pour le module RFM69HCW
-#define RF69_FREQ 433.0
+#define RF69_FREQ 433.92
 #define RF69_CS   6
 #define RF69_INT  3
 #define RF69_RST  4
@@ -69,11 +69,11 @@ void setup() {
   display.drawBitmap(10, 10, temperatureIcon, 16, 16, EPD_BLACK);
   display.setCursor(30, 10);
   display.print("Temp: 25.0 C");
-  // Afficher l'icône d'humidité
+  // // Afficher l'icône d'humidité
   display.drawBitmap(10, 40, humidityIcon, 16, 16, EPD_BLACK);
   display.setCursor(30, 40);
   display.print("Humidity: 60%");
-  // Mettre à jour l'affichage
+  // // Mettre à jour l'affichage
   display.display();
 
     // Initialiser le capteur SHT45
@@ -107,10 +107,11 @@ void loop() {
   display.display();
 
   // Transmettre les données via le module RFM69HCW
+  // Serial.println(temp.temperature);
   char data[50];
   sprintf(data, "Temp: %.2f C, Humidity: %.2f %%", temp.temperature, humidity.relative_humidity);
   radio.send(1, data, strlen(data));
 
   // Attendre 5 minutes
-  delay(300000);
+  delay(5000);
 }
